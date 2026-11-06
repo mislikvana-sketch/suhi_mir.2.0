@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101010">
+  <title>SUSHI MIR — Смак Японії</title>
+  <meta name="description" content="SUSHI MIR — роли, суші та сети. Обирай улюблене й оформлюй замовлення онлайн.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="#"><span class="brand-mark">魚</span><span>SUSHI <b>MIR</b><small>СМАК ЯПОНІЇ</small></span></a>
+  <nav><a href="#menu">Меню</a><a href="#about">Про нас</a><a href="#contacts">Контакти</a></nav>
+  <button class="cart-open" id="cartOpen" aria-label="Відкрити кошик">Кошик <span id="cartCount">0</span></button>
+</header>
+
+<main>
+<section class="hero">
+  <div class="hero-copy">
+    <div class="eyebrow"><i></i> СВІЖІ СУШІ ЩОДНЯ</div>
+    <h1>ТВОЯ ЯПОНІЯ.<br><em>ТВІЙ SUSHI MIR.</em></h1>
+    <p>Свіжі інгредієнти, яскраві смаки та роли, до яких хочеться повертатися.</p>
+    <a class="primary-btn" href="#menu">Обрати страви <span>↗</span></a>
+    <div class="hero-note"><span>✦</span> Готуємо після замовлення</div>
+  </div>
+  <div class="hero-art">
+    <div class="hero-orbit"></div>
+    <img src="https://images.unsplash.com/photo-1579871494447-9811cf80d66c?auto=format&fit=crop&w=1100&q=85" alt="Сет суші та ролів">
+    <div class="hero-stamp">SUSHI<br><b>MIR</b><small>FRESH • TASTY</small></div>
+    <div class="hero-tag">ЯКІСТЬ<br><b>У КОЖНОМУ РОЛІ</b></div>
+  </div>
+</section>
+
+<section class="menu-section" id="menu">
+  <div class="section-head"><div><div class="eyebrow"><i></i> НАШЕ МЕНЮ</div><h2>ОБИРАЙ СВІЙ <em>СМАК</em></h2></div><div class="menu-sub">Улюблені роли та сети<br>для будь-якого настрою.</div></div>
+  <div class="filters" id="filters">
+    <button class="filter active" data-category="Усі">Усі</button>
+    <button class="filter" data-category="Роли">Роли</button>
+    <button class="filter" data-category="Сети">Сети</button>
+    <button class="filter" data-category="Суші">Суші</button>
+    <button class="filter" data-category="Інше">Інше</button>
+  </div>
+  <div class="products" id="products"></div>
+</section>
+
+<section class="about" id="about">
+  <div class="about-symbol">鮨</div>
+  <div><div class="eyebrow"><i></i> SUSHI MIR</div><h2>НЕ ПРОСТО СУШІ.<br><em>ЦЕ НАСТРІЙ.</em></h2><p>Ми любимо поєднувати якісні продукти, акуратну подачу та смак, який запам’ятовується. Обирай улюблене — ми подбаємо про решту.</p></div>
+</section>
+</main>
+
+<footer id="contacts"><a class="brand" href="#"><span class="brand-mark">魚</span><span>SUSHI <b>MIR</b><small>СМАК ЯПОНІЇ</small></span></a><p>Смачно. Свіжо. З любов’ю.</p><button class="admin-link" id="adminOpen">Адмін-панель</button><small>© <span id="year"></span> SUSHI MIR</small></footer>
+
+<div class="overlay" id="cartOverlay"></div>
+<aside class="drawer" id="cartDrawer">
+  <div class="drawer-head"><div><span class="eyebrow"><i></i> ТВОЄ ЗАМОВЛЕННЯ</span><h3>Кошик</h3></div><button class="icon-btn" id="cartClose">✕</button></div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-bottom"><div class="total-line"><span>Разом</span><strong id="cartTotal">0 ₴</strong></div><button class="primary-btn full" id="checkoutBtn">Оформити замовлення <span>↗</span></button></div>
+</aside>
+
+<div class="modal-backdrop" id="orderModal">
+  <div class="modal">
+    <button class="icon-btn modal-x" data-close="orderModal">✕</button>
+    <div class="eyebrow"><i></i> ЩЕ ТРОХИ — І ГОТОВО</div><h3>Оформлення <em>замовлення</em></h3>
+    <form name="sushi-order" method="POST" id="orderForm">
+      <input type="hidden" name="Склад замовлення" id="orderDetails">
+      <input type="hidden" name="Сума" id="orderAmount">
+      <div class="form-grid">
+        <label>Ім’я *<input name="Ім’я" required placeholder="Як до вас звертатися"></label>
+        <label>Номер телефону *<input name="Телефон" type="tel" required placeholder="+380 __ ___ __ __"></label>
+        <label class="wide">Нік Telegram <span class="optional">(необов’язково)</span><input name="Telegram" placeholder="@username"></label>
+      </div>
+      <div class="form-label">Як бажаєте отримати?</div>
+      <div class="choice-row"><label><input type="radio" name="Отримання" value="З собою" checked> <span>З собою</span></label><label><input type="radio" name="Отримання" value="У закладі"> <span>У закладі</span></label></div>
+      <label class="comment-label">Коментар до замовлення<textarea name="Коментар" rows="3" placeholder="Побажання, уточнення..."></textarea></label>
+      <div class="total-line modal-total"><span>До сплати</span><strong id="modalTotal">0 ₴</strong></div>
+      <button class="primary-btn full" type="submit">Підтвердити замовлення <span>↗</span></button>
+      <p class="form-hint">Після відправлення замовлення з’явиться сторінка підтвердження.</p>
+    </form>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="adminModal">
+  <div class="modal admin-modal">
+    <button class="icon-btn modal-x" data-close="adminModal">✕</button>
+    <div class="eyebrow"><i></i> КЕРУВАННЯ МЕНЮ</div><h3>Адмін-<em>панель</em></h3>
+    <p class="admin-warning">Панель відкрита без пароля. Зміни зберігаються в цьому браузері.</p>
+    <form id="productForm">
+      <div class="form-grid">
+        <label>Назва товару *<input id="pName" required placeholder="Наприклад, Філадельфія"></label>
+        <label>Категорія<select id="pCategory"><option>Роли</option><option>Сети</option><option>Суші</option><option>Інше</option></select></label>
+        <label>Ціна (грн) *<input id="pPrice" type="number" min="1" required placeholder="250"></label>
+        <label>Вага (г)<input id="pWeight" type="number" min="1" placeholder="300"></label>
+        <label class="wide">Опис<textarea id="pDescription" rows="2" placeholder="Короткий опис страви"></textarea></label>
+        <label class="wide">Фото товару<input id="pImage" type="file" accept="image/*"><span class="optional">Або встав посилання на фото</span><input id="pImageUrl" placeholder="https://..."></label>
+      </div>
+      <button class="primary-btn full" type="submit">Додати товар <span>＋</span></button>
+    </form>
+    <div class="admin-list-head"><b>Товари в меню</b><span id="adminProductCount">0 товарів</span></div>
+    <div id="adminProducts" class="admin-products"></div>
+  </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
